@@ -7,9 +7,11 @@ import DisplayContext from '../../Context/Settings/index';
 
 
 const List = (props) => {
+  
   const display = useContext(DisplayContext).display;
+
   const [lastTaskIndex, setLastTaskIndex] = useState(display-1)
-  const [currentList, setCurrentList] = useState(props.list.slice(0, display))
+  const [currentList, setCurrentList] = useState(filteredArray.slice(0, display));
   
   let pages = Math.ceil(props.list.length / display);
 
@@ -23,15 +25,21 @@ const List = (props) => {
 
   return(
     <>
-    {currentList.map(item => (
-      <div key={item.id}>
-        <p>{item.text}</p>
-        <p><small>Assigned to: {item.assignee}</small></p>
-        <p><small>Difficulty: {item.difficulty}</small></p>
-        <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-        <hr />
-      </div>
-    ))}
+    {
+    currentList.map(item => {
+    
+      if(!item.complete){
+        return (
+          <div key={item.id}>
+            <p>{item.text}</p>
+            <p><small>Assigned to: {item.assignee}</small></p>
+            <p><small>Difficulty: {item.difficulty}</small></p>
+            <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+            <hr />
+          </div>
+        )
+      }
+    })}
     <Pagination count={pages} onChange={handleChange} />
     </>
   )

@@ -45,7 +45,7 @@ const Todo = () => {
     });
 
     setList(items);
-
+    console.log('updated state')
   }
 
 
