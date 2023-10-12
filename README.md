@@ -13,7 +13,7 @@ Currently, two official plugins are available:
 > In Phase 1, we’re going to perform some refactoring of a Todo application built by another team. This application mixes application state and user settings at the top level and passes things around. It was a good proof of concept, but we need to make this production ready.
 
    - [ ] Create a Detailed UML.
-   - [ ] Properly modularize the application into separate components, note the proposed file structure below.
+   - [x] Properly modularize the application into separate components, note the proposed file structure below.
   - [ ] Implement the Context API to make some basic application settings available to components.
       - [ ] Show three items by default.
       - [ ] Hide completed items by default.

@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
 import List from '../List/index.jsx'
-import Header from '../Header/'
+import Header from '../Header/';
 import { v4 as uuid } from 'uuid';
+import Footer from '../Footer/';
 
 const Todo = () => {
+
+  const defaultArray = [
+    { difficulty: 4, text: "aaa", assignee: "ray", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "bbb", assignee: "adfs", id: "1fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 2, text: "ccc", assignee: "fhh", id: "8fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "ddd", assignee: "jjj", id: "0fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false }
+  ]
 
   const [defaultValues] = useState({
     difficulty: 4,
   });
   const [incomplete, setIncomplete] = useState([]);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(defaultArray);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
   
+
   function addItem(item) {
     item.id = uuid();
     item.complete = false;
@@ -81,7 +90,7 @@ const Todo = () => {
         list={list}      
       />
 
-
+      <Footer/>
     </>
   );
 };
