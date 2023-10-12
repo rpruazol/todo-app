@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import useForm from '../../hooks/form';
-
+import List from '../List/index.jsx'
+import Header from '../Header/';
 import { v4 as uuid } from 'uuid';
+import Footer from '../Footer/';
 
 const Todo = () => {
+
+  const defaultArray = [
+    { difficulty: 4, text: "aaa", assignee: "ray", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "bbb", assignee: "adfs", id: "1fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 2, text: "ccc", assignee: "fhh", id: "8fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "ddd", assignee: "jjj", id: "0fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false }
+  ]
 
   const [defaultValues] = useState({
     difficulty: 4,
   });
-  const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([]);
+  const [list, setList] = useState(defaultArray);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
+
+  
 
   function addItem(item) {
     item.id = uuid();
@@ -34,8 +45,9 @@ const Todo = () => {
     });
 
     setList(items);
-
+    console.log('updated state')
   }
+
 
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
@@ -48,9 +60,7 @@ const Todo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+      <Header incomplete={incomplete} />
 
       <form onSubmit={handleSubmit}>
 
@@ -75,17 +85,12 @@ const Todo = () => {
           <button type="submit">Add Item</button>
         </label>
       </form>
+      <List 
+        toggleComplete={toggleComplete}
+        list={list}      
+      />
 
-      {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))}
-
+      <Footer/>
     </>
   );
 };
