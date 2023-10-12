@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
-
+import List from '../List/index.jsx'
+import Header from '../Header/'
 import { v4 as uuid } from 'uuid';
 
 const Todo = () => {
@@ -8,10 +9,11 @@ const Todo = () => {
   const [defaultValues] = useState({
     difficulty: 4,
   });
-  const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([]);
+  const [list, setList] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
+  
   function addItem(item) {
     item.id = uuid();
     item.complete = false;
@@ -37,6 +39,7 @@ const Todo = () => {
 
   }
 
+
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
@@ -48,9 +51,7 @@ const Todo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+      <Header incomplete={incomplete} />
 
       <form onSubmit={handleSubmit}>
 
@@ -75,16 +76,11 @@ const Todo = () => {
           <button type="submit">Add Item</button>
         </label>
       </form>
+      <List 
+        toggleComplete={toggleComplete}
+        list={list}      
+      />
 
-      {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))}
 
     </>
   );
