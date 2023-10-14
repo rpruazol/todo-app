@@ -34,3 +34,17 @@ Currently, two official plugins are available:
       - [x] Show a maximum of three items per screen by default in the <List /> component.
       - [x] Use the Mantine <Pagination /> component to allow users to navigate a list of items.
       - [x] Hide completed items in the list by default (the ability to show will be added in a later lab).
+
+
+
+3. Implement the Context API to make some basic application settings available to components.
+      - [ ] How many To Do Items to show at once.
+      - [ ] Whether or not to show completed items.
+        Hint: if reusing the custom useForm() hook, event validation may be necessary if using any Mantine component other than `<TextInput />`.
+4. Provide the users with a form where they can change the values for those settings.
+        This should be given in the form of a new component, perhaps linked to from the main navigation.
+        
+        Hint: Use Browser Router to create the page/route/component for this.
+        Once settings are updated, render the updated settings to the right of the “form”. Consider using <Grid />, <Card />, and <When /> components.
+5. Save the users choices in Local Storage.
+6. Retrieve their preferences from Local Storage and apply them to the application on startup.

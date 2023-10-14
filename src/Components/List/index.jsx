@@ -7,26 +7,28 @@ import DisplayContext from '../../Context/Settings/index';
 
 
 const List = (props) => {
-  const filteredArray = props.list.filter(item => item.complete === false)
-  console.log('filteredArray', filteredArray)
+  console.log(props.list)
+  // const filteredArray = 
+  // console.log('filteredArray', filteredArray)
+  
+  const [currentPage, setCurrentPage] = useState(1);
   const display = useContext(DisplayContext).display;
-  const [lastTaskIndex, setLastTaskIndex] = useState(display-1)
-  // const [currentList, setCurrentList] = useState(filteredArray);
 
-  const pages = Math.ceil(filteredArray.length / display)
+  const indexofLastTask = currentPage * display; // starting value 3
+  const indexofFirstTask = indexofLastTask - display; // starting value 0
 
+  const pages = Math.ceil(props.list.length / display)
   const handleChange = (e, value) => {
     console.log(e, value)
-    if(parseInt(value) === 1){setCurrentList(props.list.slice(0, display))} 
-    else {
-      setCurrentList((props.list.slice(lastTaskIndex + 1, lastTaskIndex + display)));
-    }
+    setCurrentPage(value)
 
   }
 
+  const currentList = props.list.slice(indexofFirstTask, indexofLastTask)
+
   return(
     <>
-    {filteredArray.length ? filteredArray.map(item => {
+    {currentList.length ? currentList.map(item => {
         return (
           <div key={item.id}>
             <p>{item.text}</p>
