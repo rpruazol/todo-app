@@ -8,6 +8,7 @@ import DisplayContext from '../../Context/Settings/index';
 
 const List = (props) => {
   
+  const filteredArray = props.list.filter((item) => item.complete.toString() === 'false')
   const display = useContext(DisplayContext).display;
 
   const [lastTaskIndex, setLastTaskIndex] = useState(display-1)
