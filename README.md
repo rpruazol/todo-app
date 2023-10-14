@@ -33,4 +33,4 @@ Currently, two official plugins are available:
 2. Consume and utilize context values throughout your components.
       - [x] Show a maximum of three items per screen by default in the <List /> component.
       - [x] Use the Mantine <Pagination /> component to allow users to navigate a list of items.
-      - [ ] Hide completed items in the list by default (the ability to show will be added in a later lab).
+      - [x] Hide completed items in the list by default (the ability to show will be added in a later lab).
