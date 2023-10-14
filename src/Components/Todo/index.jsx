@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import useForm from '../../hooks/form';
 import List from '../List/index.jsx'
-import Header from '../Header/';
 import { v4 as uuid } from 'uuid';
 import Footer from '../Footer/';
 
@@ -60,7 +59,7 @@ const Todo = () => {
 
   return (
     <>
-      <Header incomplete={incomplete} />
+    <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
 
       <form onSubmit={handleSubmit}>
 
