@@ -7,17 +7,17 @@ import DisplayContext from '../../Context/Settings/index';
 
 
 const List = (props) => {
-  
-  const filteredArray = props.list.filter((item) => item.complete.toString() === 'false')
+  const filteredArray = props.list.filter(item => item.complete === false)
+  console.log('filteredArray', filteredArray)
   const display = useContext(DisplayContext).display;
-
   const [lastTaskIndex, setLastTaskIndex] = useState(display-1)
-  const [currentList, setCurrentList] = useState(filteredArray.slice(0, display));
-  
-  let pages = Math.ceil(props.list.length / display);
+  // const [currentList, setCurrentList] = useState(filteredArray);
 
-  const handleChange = (e) => {
-    if(parseInt(e.target.textContent) === 1){setCurrentList(props.list.slice(0, display))} 
+  const pages = Math.ceil(filteredArray.length / display)
+
+  const handleChange = (e, value) => {
+    console.log(e, value)
+    if(parseInt(value) === 1){setCurrentList(props.list.slice(0, display))} 
     else {
       setCurrentList((props.list.slice(lastTaskIndex + 1, lastTaskIndex + display)));
     }
@@ -26,10 +26,7 @@ const List = (props) => {
 
   return(
     <>
-    {
-    currentList.map(item => {
-    
-      if(!item.complete){
+    {filteredArray.length ? filteredArray.map(item => {
         return (
           <div key={item.id}>
             <p>{item.text}</p>
@@ -39,8 +36,7 @@ const List = (props) => {
             <hr />
           </div>
         )
-      }
-    })}
+    }) : <p>No items!</p>}
     <Pagination count={pages} onChange={handleChange} />
     </>
   )
