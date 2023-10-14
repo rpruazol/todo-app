@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
 import useForm from '../../hooks/form';
 import List from '../List/index.jsx'
-import Header from '../Header/';
 import { v4 as uuid } from 'uuid';
 import Footer from '../Footer/';
 
 const Todo = () => {
 
   const defaultArray = [
-    { difficulty: 4, text: "aaa", assignee: "ray", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 1, text: "bbb", assignee: "adfs", id: "1fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 2, text: "ccc", assignee: "fhh", id: "8fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 1, text: "ddd", assignee: "jjj", id: "0fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false }
+    { difficulty: 4, text: "aaa", assignee: "aaa", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "bbb", assignee: "bbb", id: "1fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 2, text: "ccc", assignee: "ccc", id: "8fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
+    { difficulty: 1, text: "ddd", assignee: "ddd", id: "0fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false }
   ]
 
   const [defaultValues] = useState({
@@ -60,7 +59,7 @@ const Todo = () => {
 
   return (
     <>
-      <Header incomplete={incomplete} />
+    <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
 
       <form onSubmit={handleSubmit}>
 
@@ -87,7 +86,7 @@ const Todo = () => {
       </form>
       <List 
         toggleComplete={toggleComplete}
-        list={list}      
+        list={list.filter(item => !item.complete)}      
       />
 
       <Footer/>
