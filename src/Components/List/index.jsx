@@ -3,33 +3,32 @@ import useForm from '../../hooks/form';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { v4 as uuid } from 'uuid';
-import DisplayContext from '../../Context/Settings/index';
+import {DisplayContext} from '../../Context/Settings/index';
 
 
 const List = (props) => {
+  console.log(props.list)
+  // const filteredArray = 
+  // console.log('filteredArray', filteredArray)
   
-  const filteredArray = props.list.filter((item) => item.complete.toString() === 'false')
+  const [currentPage, setCurrentPage] = useState(1);
   const display = useContext(DisplayContext).display;
 
-  const [lastTaskIndex, setLastTaskIndex] = useState(display-1)
-  const [currentList, setCurrentList] = useState(filteredArray.slice(0, display));
-  
-  let pages = Math.ceil(props.list.length / display);
+  const indexofLastTask = currentPage * display; // starting value 3
+  const indexofFirstTask = indexofLastTask - display; // starting value 0
 
-  const handleChange = (e) => {
-    if(parseInt(e.target.textContent) === 1){setCurrentList(props.list.slice(0, display))} 
-    else {
-      setCurrentList((props.list.slice(lastTaskIndex + 1, lastTaskIndex + display)));
-    }
+  const pages = Math.ceil(props.list.length / display)
+  const handleChange = (e, value) => {
+    console.log(e, value)
+    setCurrentPage(value)
 
   }
 
+  const currentList = props.list.slice(indexofFirstTask, indexofLastTask)
+
   return(
     <>
-    {
-    currentList.map(item => {
-    
-      if(!item.complete){
+    {currentList.length ? currentList.map(item => {
         return (
           <div key={item.id}>
             <p>{item.text}</p>
@@ -39,8 +38,7 @@ const List = (props) => {
             <hr />
           </div>
         )
-      }
-    })}
+    }) : <p>No items!</p>}
     <Pagination count={pages} onChange={handleChange} />
     </>
   )
