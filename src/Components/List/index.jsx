@@ -3,7 +3,7 @@ import useForm from '../../hooks/form';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { v4 as uuid } from 'uuid';
-import {DisplayContext} from '../../Context/Settings/index';
+import DisplayContext from '../../Context/Settings/index';
 
 
 const List = (props) => {

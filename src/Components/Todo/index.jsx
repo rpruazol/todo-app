@@ -3,8 +3,10 @@ import useForm from '../../hooks/form';
 import List from '../List/index.jsx'
 import { v4 as uuid } from 'uuid';
 import Footer from '../Footer/';
+import DisplayContext from '../../Context/Settings';
 
 const Todo = () => {
+  const settings = useContext(DisplayContext)
 
   const defaultArray = [
     { difficulty: 4, text: "aaa", assignee: "aaa", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
@@ -52,9 +54,6 @@ const Todo = () => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
     document.title = `To Do List: ${incomplete}`;
-    // linter will want 'incomplete' added to dependency array unnecessarily. 
-    // disable code used to avoid linter warning 
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [list]);  
 
   return (
@@ -86,7 +85,7 @@ const Todo = () => {
       </form>
       <List 
         toggleComplete={toggleComplete}
-        list={list.filter(item => !item.complete)}      
+        list={list.filter(item => settings.hideCompleted === true ? !item.complete : item)}      
       />
 
       <Footer/>

@@ -6,7 +6,7 @@ import {
   Routes,
   Link
 } from "react-router-dom";
-import {Settings} from '../../Context/Settings';
+import SettingsForm from '../SettingsForm';
 
 
 const Header = (props) => {
@@ -21,13 +21,6 @@ const Header = (props) => {
             <Link to="/settings">Settings</Link>
         </li>
       </ul>
-
-        <Routes>
-          <Route path="/">
-            <Route index element={<Todo/>}/>
-            <Route path="settings" element={<Settings/>} />
-          </Route>
-        </Routes>
       </nav>
     </header>
   )

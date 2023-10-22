@@ -8,12 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const DisplayContext = createContext({
-  display: 3,
-  hideCompleted: true,
-  sort: 'difficulty'
-}
-)
+const DisplayContext = createContext(null)
 
 
 export default DisplayContext;
