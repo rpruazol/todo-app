@@ -24,7 +24,7 @@ function App() {
             display,
             hideCompleted,
             sort,
-            changeTasksPerPage: () => setDisplay(display),
+            changeTasksPerPage: (e) => setDisplay(e),
             toggleHideCompleted: (e) => setHideCompleted(e)
             // setSort
           }}>

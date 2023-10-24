@@ -9,10 +9,14 @@ const Todo = () => {
   const settings = useContext(DisplayContext)
 
   const defaultArray = [
-    { difficulty: 4, text: "aaa", assignee: "aaa", id: "4fa8239b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 1, text: "bbb", assignee: "bbb", id: "1fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 2, text: "ccc", assignee: "ccc", id: "8fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false },
-    { difficulty: 1, text: "ddd", assignee: "ddd", id: "0fa84d9b-5e3a-4bc3-8001-97ec982a57c7", complete: false }
+    { difficulty: 4, text: "aaa", assignee: "aaa", id: uuid(), complete: false },
+    { difficulty: 1, text: "bbb", assignee: "bbb", id: uuid(), complete: false },
+    { difficulty: 2, text: "ccc", assignee: "ccc", id: uuid(), complete: false },
+    { difficulty: 1, text: "ddd", assignee: "ddd", id: uuid(), complete: false },
+    { difficulty: 4, text: "eee", assignee: "eee", id: uuid(), complete: false },
+    { difficulty: 1, text: "fff", assignee: "fff", id: uuid(), complete: false },
+    { difficulty: 2, text: "ggg", assignee: "ggg", id: uuid(), complete: false },
+    { difficulty: 1, text: "hhh", assignee: "hhh", id: uuid(), complete: false }
   ]
 
   const [defaultValues] = useState({

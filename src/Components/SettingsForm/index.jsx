@@ -22,7 +22,8 @@ const SettingsForm = () => {
             settings.toggleHideCompleted(setting)
             console.log(setting)
             }}
-          defaultChecked />}
+          checked={settings.hideCompleted}
+           />}
           
         label="Hide Completed Tasks"/>
         
@@ -33,7 +34,11 @@ const SettingsForm = () => {
             id="demo-simple-select"
             value={settings.page}
             label="Tasks per page"
-            // onChange={settings.setDisplay((e) => e.target.value)}
+            onChange={(e) => {
+              // console.log(e.target.value)
+              settings.changeTasksPerPage(e.target.value)
+              }
+            }
           >
             <MenuItem value={3}>3</MenuItem>
             <MenuItem value={10}>10</MenuItem>
